@@ -32,9 +32,10 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.provision :ansible do |ansible|
-      ansible.playbook = "ansible/magneto.yml"
-      ansible.inventory_path = "ansible/hosts"
-      ansible.verbose = 'vvv'
+      ansible.playbook = "./ansible/magneto.yml"
+      ansible.inventory_path = "./ansible/hosts"
+      ansible.limit = 'all'
+      ansible.verbose = 'vvvv'
     end
 
 

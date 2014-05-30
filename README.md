@@ -10,9 +10,18 @@ Magneto
 * [Apache Mesos][] (0.18.2)
 * [Mesos Docker Executor][] installed on all Mesos slave servers
 * [Docker][] installed on all slave servers
-* [Marathon][] framework.
+* [Marathon][] (0.4.0) framework.
+* [Chronos][] (2.1.0) framework
+* [Aurora][] framework
 
-It has been tested using [Vagrant][] 1.4.3
+It has been tested using [Vagrant][] 1.4.3 and [Ansible][] 1.6.0
+
+## Installation
+
+* Creates the VM :
+
+        $ vagrant up
+
 
 ## License
 
@@ -50,4 +59,7 @@ Nicolas Lamirault <nicolas.lamirault@gmail.com>
 [Mesos Docker Executor]: https://github.com/mesosphere/mesos-docker
 [Docker]: https://www.docker.io
 [Marathon]: https://github.com/mesosphere/marathon
+[Chronos]: http://airbnb.github.io/chronos
+[Aurora]: http://aurora.incubator.apache.org
 [Vagrant]: http://www.vagrantup.com
+[Ansible]: http://www.ansible.com

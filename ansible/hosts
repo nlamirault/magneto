@@ -1,5 +1,7 @@
+#default ansible_ssh_host=10.9.8.7 ansible_ssh_port=22
+
 [magneto]
-10.9.8.7
+10.9.8.7 ansible_ssh_port=22
 
 [magneto:vars]
 user=vagrant
@@ -14,5 +16,6 @@ mesos_download_url=http://downloads.mesosphere.io/master/ubuntu/13.10
 mesos_version=0.18.2
 marathon_download_url=http://downloads.mesosphere.io/marathon
 marathon_version=0.4.0
-chronos_download_url=http://downloads.mesosphere.io/chronos/
+chronos_download_url=http://downloads.mesosphere.io/chronos
 chronos_version=2.1.0_mesos-0.14.0-rc4
+aurora_download_url=

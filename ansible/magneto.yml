@@ -3,10 +3,12 @@
 # Ansible configuration for Magneto
 #
 
-- hosts: all
+- hosts: magneto
   sudo: yes
   tasks:
     - include: playbooks/base.yml
     - include: playbooks/mesos/mesos.yml
     - include: playbooks/marathon/marathon.yml
     - include: playbooks/chronos/chronos.yml
+    - include: playbooks/aurora/aurora.yml
+    - include: playbooks/misc/main.yml

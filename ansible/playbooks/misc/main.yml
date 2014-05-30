@@ -1,0 +1,3 @@
+---
+- name: Setup Magneto MOTD
+  copy: src=motd dest=/etc/motd

@@ -1,15 +1,5 @@
 ---
 
-# - hosts: all
-#   sudo: yes
-#   tasks:
-#     - include: tasks/main.yml
-
-# - hosts: all
-#   sudo: no
-#   tasks:
-#     - include: tasks/config.yml
-
 - name: Install Apache Mesos dependencies
   apt: pkg={{ item }} state=present
   with_items:
@@ -23,7 +13,7 @@
     - libsasl2-dev
     - curl
 
-- name: Download Apache Mesos {{mesos_version}}
+- name: Download Apache Mesos
   get_url: url={{ mesos_download_url }}/mesos_{{ mesos_version }}_amd64.deb dest=/opt/mesos-{{ mesos_version }}.deb
 
 - name: Install Apache Mesos Debian Package
@@ -33,7 +23,7 @@
   get_url: url={{ mesos_download_url }}/mesos-{{ mesos_version }}-py2.7-linux-x86_64.egg dest=/opt/mesos-{{ mesos_version }}-py.egg
 
 - name: Install Apache Mesos Python egg
-  shell: easy_install /opt/mesos-{{mesos_version}}-py.egg
+  shell: easy_install /opt/mesos-{{ mesos_version }}-py.egg
 
 # - name: Install Apache Mesos master configuration
 #   copy: src=files/mesos-master.conf dest=/etc/mesos

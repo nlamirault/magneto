@@ -1,3 +1,0 @@
----
-- name: Install Apache Mesos master configuration
-  copy: src=files/mesos-master.conf dest=/etc/mesos
