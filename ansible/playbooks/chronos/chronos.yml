@@ -1,0 +1,7 @@
+---
+
+- name: Download Apache Mesos {{chronos_version}}
+  get_url: url={{ chronos_download_url }}/chronos-{{ chronos_version }}.tgz dest=/opt/chronos-{{ chronos_version }}.tgz
+
+- name: Install Mesos Chronos
+  shell: tar xzf /opt/chronos-{{ chronos_version }}.tgz

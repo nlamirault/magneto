@@ -1,0 +1,7 @@
+---
+
+- name: Update cache
+  apt: update_cache=yes
+
+- name: Setup Magneto applications directory
+  action: file path=/opt state=directory
