@@ -5,7 +5,7 @@ Magneto
 
 ## Description
 
-[Magneto][] is a Continuous integration system build using :
+Setup your Continuous integration sytem on a [Mesos][] Cluster with Vagrant. [Magneto][] is a Continuous integration system build using :
 * [Jenkins][]  with the Mesos scheduler plugin installed
 * [Apache Mesos][] (0.18.2)
 * [Mesos Docker Executor][] installed on all Mesos slave servers
@@ -14,13 +14,25 @@ Magneto
 * [Chronos][] (2.1.0) framework
 * [Aurora][] framework
 
-It has been tested using [Vagrant][] 1.4.3 and [Ansible][] 1.6.0
+
+## Prerequisites
+
+It has been tested using :
+* [Vagrant][] 1.4.3
+* [Ansible][] 1.6.0
+* [Virtualbox][] 4.2.2
+
 
 ## Installation
 
 * Creates the VM :
 
         $ vagrant up
+
+* Check the UI :
+** Mesos : `http://10.9.8.7:5050`
+** Chronos : `http://10.9.8.7:8081`
+** Marathon : `http://10.9.8.7:8080`
 
 
 ## License
@@ -63,3 +75,4 @@ Nicolas Lamirault <nicolas.lamirault@gmail.com>
 [Aurora]: http://aurora.incubator.apache.org
 [Vagrant]: http://www.vagrantup.com
 [Ansible]: http://www.ansible.com
+[Virtualbox]: https://www.virtualbox.org
