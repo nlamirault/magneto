@@ -5,9 +5,9 @@ Magneto
 
 ## Description
 
-Setup your Continuous integration sytem on a [Mesos][] Cluster with Vagrant. [Magneto][] is a Continuous integration system build using :
+Setup your Continuous integration sytem on a [Mesos][] Cluster with Vagrant. [Magneto][] uses :
 * [Jenkins][]  with the Mesos scheduler plugin installed
-* [Apache Mesos][] (0.18.2)
+* [Mesos][] (0.18.2)
 * [Mesos Docker Executor][] installed on all Mesos slave servers
 * [Docker][] installed on all slave servers
 * [Marathon][] (0.4.0) framework.
@@ -67,7 +67,7 @@ Nicolas Lamirault <nicolas.lamirault@gmail.com>
 [badge-license]: https://img.shields.io/badge/license-GPL_3-green.svg?style=flat
 
 [Jenkins]: http://jenkins-ci.org
-[Apache Mesos]: http://mesos.apache.org
+[Mesos]: http://mesos.apache.org
 [Mesos Docker Executor]: https://github.com/mesosphere/mesos-docker
 [Docker]: https://www.docker.io
 [Marathon]: https://github.com/mesosphere/marathon
