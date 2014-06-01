@@ -1,6 +1,6 @@
 ---
 - name: Creates Mesos executor directory
-  action: file path=/var/lib/mesos/executor/ state=directory
+  action: file path=/var/lib/mesos/executors/ state=directory
 
 - name: Download Mesos Docker executor
   get_url: url=https://raw.githubusercontent.com/mesosphere/mesos-docker/master/bin/mesos-docker dest=/var/lib/mesos/executors/docker

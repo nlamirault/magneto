@@ -4,7 +4,6 @@
   apt: pkg={{ item }} state=present
   with_items:
     - build-essential
-    - zookeeper
     - openjdk-6-jdk
     - python-setuptools
     - python-dev
