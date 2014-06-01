@@ -30,9 +30,9 @@ It has been tested using :
         $ vagrant up
 
 * Check the UI :
-- Mesos : `http://10.9.8.7:5050`
-- Chronos : `http://10.9.8.7:8081`
-- Marathon : `http://10.9.8.7:8080`
+* Mesos : `http://10.9.8.7:5050`
+* Chronos : `http://10.9.8.7:8081`
+* Marathon : `http://10.9.8.7:8080`
 
 
 ## License
