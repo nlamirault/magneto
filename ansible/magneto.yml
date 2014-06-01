@@ -11,4 +11,5 @@
     - include: playbooks/marathon/marathon.yml
     - include: playbooks/chronos/chronos.yml
     - include: playbooks/aurora/aurora.yml
+    - include: playbooks/docker/docker.yml
     - include: playbooks/misc/main.yml
