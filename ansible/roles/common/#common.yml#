@@ -1,0 +1,6 @@
+---
+- hosts: magneto
+  sudo: yes
+  tasks:
+    - include: tasks/main.yml
+

@@ -1,5 +1,4 @@
 ---
-
 - name: Update cache
   apt: update_cache=yes
 
@@ -7,7 +6,21 @@
   apt: pkg={{ item }} state=present
   with_items:
     - git
+    - curl
     - locales
+    - openjdk-7-jdk
+    - g++
+    - python-dev
+    - zlib1g-dev
+    - libssl-dev
+    - libcurl4-openssl-dev
+    - libsasl2-modules
+    - python-setuptools
+    - python-protobuf
+    - libsasl2-dev
+    - make
+    - daemon
+    - unzip
 
 # Ansible error :
 #  msg: /etc/locale.gen and /var/lib/locales/supported.d/local are missing. Is the package “locales” installed

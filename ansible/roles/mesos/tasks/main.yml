@@ -2,13 +2,12 @@
   apt: pkg={{ item }} state=present
   with_items:
     - build-essential
-    - openjdk-6-jdk
+    - openjdk-7-jdk
     - python-setuptools
     - python-dev
     - python-protobuf
     - libcurl4-nss-dev
     - libsasl2-dev
-    - curl
 
 - name: Download Apache Mesos
   get_url: url={{ mesos_download_url }}/mesos_{{ mesos_version }}_amd64.deb dest=/opt/mesos-{{ mesos_version }}.deb

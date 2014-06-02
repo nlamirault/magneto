@@ -1,0 +1,42 @@
+---
+- hosts: magneto
+  sudo: yes
+  tasks:
+    - include: tasks/main.yml
+
+- name: Update cache
+  apt: update_cache=yes
+
+- name: Install dependencies
+  apt: pkg={{ item }} state=present
+  with_items:
+    - git
+    - curl
+    - locales
+    - openjdk-7-jdk
+    - g++
+    - python-dev
+    - zlib1g-dev
+    - libssl-dev
+    - libcurl4-openssl-dev
+    - libsasl2-modules
+    - python-setuptools
+    - python-protobuf
+    - libsasl2-dev
+    - make
+    - daemon
+    - unzip
+
+# Ansible error :
+#  msg: /etc/locale.gen and /var/lib/locales/supported.d/local are missing. Is the package “locales” installed
+# - name: Setup locale
+#   locale_gen: name=en_US.UTF-8 state=present
+- name: Setup locales
+  command: locale-gen fr_FR.UTF-8 en_US.UTF-8
+
+- name: Update locales
+  command: update-locale LANG="en_US.UTF-8"
+  # echo 'LANG=en_US.UTF-8' >> /etc/environment && echo 'LC_ALL=en_US.UTF-8' >> /etc/environment
+
+- name: Setup Magneto applications directory
+  action: file path=/opt/ state=directory

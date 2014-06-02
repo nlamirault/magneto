@@ -14,10 +14,10 @@ env JAVA_OPTS='-Djava.library.path=/usr/local/lib'
 
 env ZK_HOST={{ magneto_zk_ip }}
 
-exec $DIST_DIR/install/aurora-scheduler/bin/aurora-scheduler \
+JAVA_OPTS="${JAVA_OPTS}" exec $AURORA_HOME/aurora-scheduler-{{ aurora_version }}/bin/aurora-scheduler \
   -cluster_name=example \
-  -http_port=8081 \
-  -thrift_port=8082 \
+  -http_port={{ aurora_http_port }} \
+  -thrift_port={{ aurora_thrift_port }} \
   -native_log_quorum_size=1 \
   -zk_endpoints=$ZK_HOST:2181 \
   -mesos_master_address=zk://$ZK_HOST:2181/mesos/master \

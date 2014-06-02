@@ -5,10 +5,8 @@
 
 - hosts: magneto
   sudo: yes
-  tasks:
-    - include: playbooks/base.yml
-    - include: playbooks/misc/main.yml
   roles:
+    - common
     - zookeeper
     - mesos
     - marathon

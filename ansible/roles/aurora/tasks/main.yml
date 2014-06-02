@@ -1,7 +1,18 @@
 ---
-
 - name: Download Mesos Aurora
   git: repo={{ aurora_download_url }} dest=/opt/aurora
+
+- name: Download Thrift compiler
+  get_url: url=http://people.apache.org/~jfarrell/thrift/{{ thrift_compiler_version }}/contrib/deb/ubuntu/12.04/thrift-compiler_{{ thrift_compiler_version }}_amd64.deb dest=/opt/thrift-compiler_{{ thrift_compiler_version }}_amd64.deb
+
+- name: Install Thrift compiler
+  shell: dpkg -i /opt/thrift-compiler_{{ thrift_compiler_version }}_amd64.deb
+
+- name: Build Aurora
+  command: ./gradlew distZip chdir=/opt/aurora
+
+- name: Install Aurora Scheduler
+  command: unzip /opt/aurora/dist/distributions/aurora-scheduler-{{ aurora_version }}.zip -d /opt/aurora
 
 - name: Install Aurora scheduler configuration
   template: src=aurora-scheduler.j2 dest=/etc/init/aurora-scheduler.conf owner=root group=root mode=0644
