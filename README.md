@@ -39,7 +39,7 @@ Display usage message :
         $ make single
 
 * Mesos : `http://10.9.8.7:5050`
-* Chronos : `http://10.9.8.7:8081`
+* Chronos : `http://10.9.8.7:8090`
 * Marathon : `http://10.9.8.7:8086`
 * Aurora : `http://10.9.8.7:9001`
 

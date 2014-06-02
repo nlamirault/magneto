@@ -8,7 +8,7 @@ env ZK_HOST={{ magneto_zk_ip }}
 
 env FRAMEWORK_HOME=/opt/chronos
 
-env CHRONOS_PORT={{ chronos_http_port }}
+env OPTIONS="--http_port {{ chronos_http_port }}"
 env CHRONOS_LOG=/var/log/chronos-scheduler.log
 
-exec $FRAMEWORK_HOME/bin/start-chronos.bash --zk=zk://$ZK_HOST:2181/mesos --zk zk://$ZK_HOST:2181 1>> $LOG 2>&1
+exec $FRAMEWORK_HOME/bin/start-chronos.bash --master zk://$ZK_HOST:2181/mesos --zk_hosts $ZK_HOST:2181 $OPTIONS 1>> $LOG 2>&1
