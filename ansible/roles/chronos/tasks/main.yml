@@ -5,3 +5,6 @@
 
 - name: Install Mesos Chronos
   shell: tar xzf /opt/chronos-{{ chronos_version }}.tgz -C /opt
+
+- name: Install Chronos configuration
+  template: src=chronos.j2 dest=/etc/init/chronos.conf owner=root group=root mode=0644

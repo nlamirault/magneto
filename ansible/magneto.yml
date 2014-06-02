@@ -7,12 +7,14 @@
   sudo: yes
   tasks:
     - include: playbooks/base.yml
+    - include: playbooks/misc/main.yml
+    - include: playbooks/docker/docker.yml
   roles:
     - zookeeper
     - mesos
-    # - include: playbooks/marathon/marathon.yml
+    - marathon
+    - chronos
+
     # - include: playbooks/chronos/chronos.yml
     # - include: playbooks/aurora/aurora.yml
-    # - include: playbooks/docker/docker.yml
     # - include: playbooks/mesos-docker/mesos-docker.yml
-    # - include: playbooks/misc/main.yml

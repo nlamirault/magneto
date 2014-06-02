@@ -4,3 +4,6 @@
 
 - name: Install Mesos Marathon
   command: tar xzf /opt/marathon-{{ marathon_version }}.tgz -C /opt
+
+- name: Install Marathon configuration
+  template: src=marathon.j2 dest=/etc/init/marathon.conf owner=root group=root mode=0644
