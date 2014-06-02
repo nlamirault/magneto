@@ -1,4 +1,5 @@
 ---
-
-- name: Install Zookeeper
-  apt: pkg=zookeeperd state=present
+- hosts: magneto
+  sudo: yes
+  tasks:
+    - include: tasks/main.yml

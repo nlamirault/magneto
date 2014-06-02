@@ -10,7 +10,11 @@
 [magneto:vars]
 user=vagrant
 
-magneto_ip=10.9.8.7
+magneto_master_ip=192.150.33.10
+magneto_slave1_ip=192.150.33.11
+magneto_slave2_ip=192.150.33.12
+magneto_zk_ip=192.150.33.20
+magneto_aurora_ip=192.150.33.30
 
 java_version=7
 scala_version=2.10.3

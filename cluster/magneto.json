@@ -9,19 +9,19 @@
             {
                 ":name": "Slave1",
                 ":ip": "192.150.33.11",
-                ":memory": 1024,
+                ":memory": 512,
                 ":cpus": 1
             },
             {
                 ":name": "Slave2",
                 ":ip": "192.150.33.12",
-                ":memory": 1024,
+                ":memory": 512,
                 ":cpus": 1
             },
             {
                 ":name": "Zookeeper",
                 ":ip": "192.150.33.20",
-                ":memory": 1024,
+                ":memory": 512,
                 ":cpus": 1
             },
             {

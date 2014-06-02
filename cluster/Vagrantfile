@@ -37,12 +37,12 @@ Vagrant.configure("2") do |config|
     #vb.cpus = $vb_cpus
   end
 
-  config.vm.provision :ansible do |ansible|
-    ansible.playbook = "../ansible/magneto.yml"
-    ansible.inventory_path = "../ansible/cluster"
-    ansible.limit = 'all'
-    ansible.verbose = 'vvvv'
-  end
+  # config.vm.provision :ansible do |ansible|
+  #   ansible.playbook = "../ansible/magneto.yml"
+  #   ansible.inventory_path = "../ansible/cluster"
+  #   ansible.limit = 'all'
+  #   ansible.verbose = 'vvvv'
+  # end
 
   nodes_config.each do |vm_node|
     config.vm.define vm_node[':name'] do |node|
