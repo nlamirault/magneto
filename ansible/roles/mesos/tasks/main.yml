@@ -25,8 +25,8 @@
 - name: Install Apache Mesos master configuration
   template: src=mesos-master.j2 dest=/etc/init/mesos-master.conf owner=root group=root mode=0644
 
-# - name: Install Apache Mesos slave configuration
-#   copy: src=files/mesos-slave1.conf dest=/etc/mesos
+- name: Install Apache Mesos slave 1 configuration
+  template: src=mesos-slave1.j2 dest=/etc/init/mesos-slave1.conf owner=root group=root mode=0644
 
-# - name: Install Apache Mesos slave configuration
-#   copy: src=files/mesos-slave2.conf dest=/etc/mesos
+- name: Install Apache Mesos slave 2 configuration
+  template: src=mesos-slave2.j2 dest=/etc/init/mesos-slave2.conf owner=root group=root mode=0644
