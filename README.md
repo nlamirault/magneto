@@ -25,13 +25,29 @@ It has been tested using :
 
 ## Installation
 
-* Creates the VM :
+Display usage message :
 
-        $ vagrant up
+    $ make help
+    === Magneto ===
+    single   : create a single instance with all services activated
+    cluster  : creates multiple instances
+
+### Single instance
+
+* Create the VM :
+
+        $ make single
 
 * Mesos : `http://10.9.8.7:5050`
 * Chronos : `http://10.9.8.7:8081`
 * Marathon : `http://10.9.8.7:8080`
+
+
+### Cluster
+
+* Create all virtual machines :
+
+        $ make cluster
 
 
 ## License
