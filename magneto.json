@@ -1,0 +1,37 @@
+{
+    "nodes": [
+            {
+                ":name": "Master",
+                ":ip": "192.150.33.10",
+                ":memory": 1024,
+                ":cpus": 1
+            },
+            {
+                ":name": "Slave1",
+                ":ip": "192.150.33.11",
+                ":memory": 1024,
+                ":cpus": 1
+            },
+            {
+                ":name": "Slave2",
+                ":ip": "192.150.33.12",
+                ":memory": 1024,
+                ":cpus": 1
+            },
+            {
+                ":name": "Zookeeper",
+                ":ip": "192.150.33.20",
+                ":memory": 1024,
+                ":cpus": 1
+            },
+            {
+                ":name": "Scheduler",
+                ":ip": "192.150.33.30",
+                ":memory": 1024,
+                ":cpus": 1
+            }
+    ],
+    "main": {
+        ":gui": false
+    }
+}
