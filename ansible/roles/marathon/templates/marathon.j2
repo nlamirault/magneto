@@ -7,8 +7,8 @@ env ZK_MASTER={{ magneto_master_ip }}
 env ZK_HOST={{ magneto_zk_ip }}
 
 env LOG="/var/log/marathon/marathon.log"
-env OPTIONS="--checkpoint --ha --zk_timeout 30000 --http_port 8086"
+env OPTIONS="--checkpoint --ha --zk_timeout 30000 --http_port {{ marathon_http_port }}"
 
 env FRAMEWORK_HOME=/opt/marathon
 
-exec $FRAMEWORK_HOME/bin/start --master --zk=zk://$ZK_HOST:2181/mesos --zk zk://$ZK_HOST:2181/marathon
+exec $FRAMEWORK_HOME/bin/start --master zk://$ZK_HOST:2181/mesos --zk_hosts $ZK_HOST:2181 $OPTIONS 1>> $LOG 2>&1

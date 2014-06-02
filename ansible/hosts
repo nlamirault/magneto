@@ -21,6 +21,7 @@ mesos_version=0.18.2
 
 marathon_download_url=http://downloads.mesosphere.io/marathon
 marathon_version=0.4.0
+marathon_http_port=8006
 
 chronos_download_url=http://downloads.mesosphere.io/chronos
 chronos_version=2.1.0_mesos-0.14.0-rc4
