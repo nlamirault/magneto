@@ -9,8 +9,7 @@
     - include: playbooks/base.yml
   roles:
     - zookeeper
-
-    # - include: playbooks/mesos/mesos.yml
+    - mesos
     # - include: playbooks/marathon/marathon.yml
     # - include: playbooks/chronos/chronos.yml
     # - include: playbooks/aurora/aurora.yml

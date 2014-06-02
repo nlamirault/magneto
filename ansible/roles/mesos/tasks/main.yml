@@ -22,8 +22,8 @@
 - name: Install Apache Mesos Python egg
   shell: easy_install /opt/mesos-{{ mesos_version }}-py.egg
 
-# - name: Install Apache Mesos master configuration
-#   copy: src=files/mesos-master.conf dest=/etc/mesos
+- name: Install Apache Mesos master configuration
+  template: src=mesos-master.j2 dest=/etc/init/mesos-master.conf owner=root group=root mode=0644
 
 # - name: Install Apache Mesos slave configuration
 #   copy: src=files/mesos-slave1.conf dest=/etc/mesos
