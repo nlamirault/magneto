@@ -1,0 +1,6 @@
+
+- name: Install Zookeeper
+  apt: pkg=zookeeperd state=present
+
+- name: Install Zookeeper start file
+  copy: src=zookeeper.conf dest=/etc/init
