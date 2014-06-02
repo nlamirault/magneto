@@ -13,30 +13,49 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+# $num_instances = 3
+# $vb_gui = false
+# $vb_memory = 1024
+# $vb_cpus = 1
+# $ip_addr_prefix = "192.168.56.10"
+
+nodes_config = (JSON.parse(File.read("magneto.json")))['nodes']
+main_config = (JSON.parse(File.read("magneto.json")))['main']
 
 Vagrant.configure("2") do |config|
+
   config.vm.box = "saucy"
   config.vm.box_url = "http://cloud-images.ubuntu.com/vagrant/saucy/current/saucy-server-cloudimg-amd64-vagrant-disk1.box"
-  config.vm.hostname = "Magneto"
-  config.vm.network :private_network, :ip => '10.9.8.7'
 
   config.ssh.forward_agent = true
   config.ssh.forward_x11 = true
 
   config.vm.provider :virtualbox do |vb|
-    #vb.gui = true
-    vb.customize ["modifyvm", :id, "--memory", "2048", "--cpus", "2"]
-    vb.customize ["modifyvm", :id, "--natdnshostresolver1", "off"]
-    vb.customize ["modifyvm", :id, "--natdnsproxy1", "off"]
-    vb.name = "Magneto"
+    #vb.gui = $vb_gui
+    vb.gui = main_config[':gui']
+    #vb.memory = $vb_memory
+    #vb.cpus = $vb_cpus
   end
 
   config.vm.provision :ansible do |ansible|
-      ansible.playbook = "./ansible/magneto.yml"
-      ansible.inventory_path = "./ansible/hosts"
-      ansible.limit = 'all'
-      ansible.verbose = 'vvvv'
-    end
+    ansible.playbook = "./ansible/magneto.yml"
+    ansible.inventory_path = "./ansible/cluster"
+    ansible.limit = 'all'
+    ansible.verbose = 'vvvv'
+  end
 
+  nodes_config.each do |vm_node|
+    config.vm.define vm_node[':name'] do |node|
+      node.vm.box = "saucy"
+      node.vm.hostname = "Magneto%s" % vm_node[':name']
+      node.vm.network :private_network, ip: "%s" % vm_node[':ip']
+      node.vm.provider :virtualbox do |vb|
+        vb.customize ["modifyvm", :id, "--memory", vm_node[':memory']]
+        vb.customize ["modifyvm", :id, "--name", "Magneto%s" % vm_node[':name']]
+        vb.customize ["modifyvm", :id, "--natdnshostresolver1", "off"]
+        vb.customize ["modifyvm", :id, "--natdnsproxy1", "off"]
+      end
+    end
+  end
 
 end

@@ -1,0 +1,25 @@
+#default ansible_ssh_host=10.9.8.7 ansible_ssh_port=22
+
+[magneto]
+192.153.33.10 ansible_ssh_port=22
+192.153.33.11 ansible_ssh_port=22
+192.153.33.12 ansible_ssh_port=22
+192.153.33.20 ansible_ssh_port=22
+192.153.33.30 ansible_ssh_port=22
+
+[magneto:vars]
+user=vagrant
+
+magneto_ip=10.9.8.7
+
+java_version=7
+scala_version=2.10.3
+sbt_version=0.13.1
+
+mesos_download_url=http://downloads.mesosphere.io/master/ubuntu/13.10
+mesos_version=0.18.2
+marathon_download_url=http://downloads.mesosphere.io/marathon
+marathon_version=0.4.0
+chronos_download_url=http://downloads.mesosphere.io/chronos
+chronos_version=2.1.0_mesos-0.14.0-rc4
+aurora_download_url=
