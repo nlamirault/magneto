@@ -18,9 +18,14 @@ sbt_version=0.13.1
 
 mesos_download_url=http://downloads.mesosphere.io/master/ubuntu/13.10
 mesos_version=0.18.2
+
 marathon_download_url=http://downloads.mesosphere.io/marathon
 marathon_version=0.4.0
+
 chronos_download_url=http://downloads.mesosphere.io/chronos
 chronos_version=2.1.0_mesos-0.14.0-rc4
-magneto_chronos_port=8081
-aurora_download_url=
+chronos_http_port=8081
+
+aurora_download_url=https://github.com/apache/incubator-aurora.git
+aurora_http_port=9001
+aurora_thrift_port=9002

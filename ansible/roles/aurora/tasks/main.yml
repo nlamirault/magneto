@@ -1,0 +1,10 @@
+---
+
+- name: Download Mesos Aurora
+  git: repo={{ aurora_download_url }} dest=/opt/aurora
+
+- name: Install Aurora scheduler configuration
+  template: src=aurora-scheduler.j2 dest=/etc/init/aurora-scheduler.conf owner=root group=root mode=0644
+
+- name: Install Aurora thermos observer configuration
+  template: src=aurora-thermos-observer.j2 dest=/etc/init/aurora-thermos-observer.conf owner=root group=root mode=0644

@@ -41,6 +41,7 @@ Display usage message :
 * Mesos : `http://10.9.8.7:5050`
 * Chronos : `http://10.9.8.7:8081`
 * Marathon : `http://10.9.8.7:8080`
+* Aurora : `http://10.9.8.7:9001`
 
 
 ### Cluster

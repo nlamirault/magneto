@@ -4,7 +4,9 @@ start on stopped rc RUNLEVEL=[2345]
 respawn
 post-stop exec sleep 5
 
-exec /home/vagrant/aurora/dist/thermos_observer.pex \
+env AURORA_HOME=/opt/aurora
+
+exec $AURORA_HOME/dist/thermos_observer.pex \
   --root=/var/run/thermos \
   --port=1338 \
   --log_to_disk=NONE \

@@ -8,13 +8,11 @@
   tasks:
     - include: playbooks/base.yml
     - include: playbooks/misc/main.yml
-    - include: playbooks/docker/docker.yml
   roles:
     - zookeeper
     - mesos
     - marathon
     - chronos
-
-    # - include: playbooks/chronos/chronos.yml
-    # - include: playbooks/aurora/aurora.yml
-    # - include: playbooks/mesos-docker/mesos-docker.yml
+    - aurora
+    - docker
+    - mesos-docker
