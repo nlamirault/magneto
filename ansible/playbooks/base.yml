@@ -13,8 +13,12 @@
 #  msg: /etc/locale.gen and /var/lib/locales/supported.d/local are missing. Is the package “locales” installed
 # - name: Setup locale
 #   locale_gen: name=en_US.UTF-8 state=present
-# - name: Setup locale
-#   command: locale-gen fr_FR.UTF-8 en_US.UTF-8 && update-locale LANG="en_US.UTF-8" && echo 'LANG=en_US.UTF-8' >> /etc/environment && echo 'LC_ALL=en_US.UTF-8' >> /etc/environment
+- name: Setup locales
+  command: locale-gen fr_FR.UTF-8 en_US.UTF-8
+
+- name: Update locales
+  command: update-locale LANG="en_US.UTF-8"
+  # echo 'LANG=en_US.UTF-8' >> /etc/environment && echo 'LC_ALL=en_US.UTF-8' >> /etc/environment
 
 - name: Setup Magneto applications directory
   action: file path=/opt/ state=directory

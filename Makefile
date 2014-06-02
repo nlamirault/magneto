@@ -29,6 +29,9 @@ up:
 provision:
 	cd $(ENV); vagrant provision; cd -
 
+ssh:
+	cd $(ENV); vagrant ssh; cd -
+
 halt:
 	cd $(ENV); vagrant halt; cd -
 
