@@ -32,3 +32,4 @@ aurora_download_url=https://github.com/apache/incubator-aurora.git
 aurora_version=0.5.1-SNAPSHOT
 aurora_http_port=9001
 aurora_thrift_port=9002
+aurora_cluster_name=magneto

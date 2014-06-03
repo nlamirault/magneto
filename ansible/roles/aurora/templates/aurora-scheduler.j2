@@ -7,6 +7,7 @@ post-stop exec sleep 5
 # Environment variables control the behavior of the Mesos scheduler driver (libmesos).
 env GLOG_v=0
 env AURORA_HOME=/opt/aurora
+env AURORA_BACKUP=$AURORA_HOME/aurora-scheduler-{{ aurora_version }}/backups
 env DIST_DIR=/opt/aurora
 
 # Flags that control the behavior of the JVM.
@@ -15,7 +16,7 @@ env JAVA_OPTS='-Djava.library.path=/usr/local/lib'
 env ZK_HOST={{ magneto_zk_ip }}
 
 JAVA_OPTS="${JAVA_OPTS}" exec $AURORA_HOME/aurora-scheduler-{{ aurora_version }}/bin/aurora-scheduler \
-  -cluster_name=example \
+  -cluster_name={{ aurora_cluster_name }} \
   -http_port={{ aurora_http_port }} \
   -thrift_port={{ aurora_thrift_port }} \
   -native_log_quorum_size=1 \
