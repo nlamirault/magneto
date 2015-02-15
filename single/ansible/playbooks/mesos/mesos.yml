@@ -1,0 +1,34 @@
+---
+
+- name: Install Apache Mesos dependencies
+  apt: pkg={{ item }} state=present
+  with_items:
+    - build-essential
+    - openjdk-6-jdk
+    - python-setuptools
+    - python-dev
+    - python-protobuf
+    - libcurl4-nss-dev
+    - libsasl2-dev
+    - curl
+
+- name: Download Apache Mesos
+  get_url: url={{ mesos_download_url }}/mesos_{{ mesos_version }}.deb dest=/opt/mesos-{{ mesos_version }}.deb
+
+- name: Install Apache Mesos Debian Package
+  shell: dpkg -i /opt/mesos-{{ mesos_version }}.deb
+
+- name: Download Apache Mesos Python egg
+  get_url: url={{ mesos_download_url }}/mesos-{{ mesos_version }}-py2.7-linux-x86_64.egg dest=/opt/mesos-{{ mesos_version }}-py.egg
+
+- name: Install Apache Mesos Python egg
+  shell: easy_install /opt/mesos-{{ mesos_version }}-py.egg
+
+# - name: Install Apache Mesos master configuration
+#   copy: src=files/mesos-master.conf dest=/etc/mesos
+
+# - name: Install Apache Mesos slave configuration
+#   copy: src=files/mesos-slave.conf dest=/etc/mesos
+
+# - name: Install Apache Mesos configuration
+#   copy: src=files/mesos.conf dest=/etc/mesos
