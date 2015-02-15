@@ -15,8 +15,7 @@
 
 
 Vagrant.configure("2") do |config|
-  config.vm.box = "saucy"
-  config.vm.box_url = "http://cloud-images.ubuntu.com/vagrant/saucy/current/saucy-server-cloudimg-amd64-vagrant-disk1.box"
+  config.vm.box = "everpeace/mesos"
   config.vm.hostname = "Magneto"
   config.vm.network :private_network, :ip => '10.9.8.7'
 
@@ -30,13 +29,5 @@ Vagrant.configure("2") do |config|
     vb.customize ["modifyvm", :id, "--natdnsproxy1", "off"]
     vb.name = "Magneto"
   end
-
-  config.vm.provision :ansible do |ansible|
-      ansible.playbook = "./ansible/magneto.yml"
-      ansible.inventory_path = "./ansible/hosts"
-      ansible.limit = 'all'
-      ansible.verbose = 'vvvv'
-    end
-
 
 end

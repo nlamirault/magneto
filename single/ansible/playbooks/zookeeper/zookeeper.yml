@@ -1,4 +1,0 @@
----
-
-- name: Install Zookeeper
-  apt: pkg=zookeeperd state=present

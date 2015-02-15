@@ -1,4 +1,0 @@
----
-
-- name: Download Mesos Aurora
-  git: repo=https://github.com/apache/incubator-aurora.git dest=/opt/aurora

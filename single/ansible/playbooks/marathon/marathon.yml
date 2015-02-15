@@ -1,6 +1,0 @@
----
-- name: Download Mesos Marathon
-  get_url: url={{ marathon_download_url }}/marathon-{{ marathon_version }}.tgz dest=/opt/marathon-{{ marathon_version }}.tgz
-
-- name: Install Mesos Marathon
-  command: tar xzf /opt/marathon-{{ marathon_version }}.tgz -C /opt
