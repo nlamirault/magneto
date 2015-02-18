@@ -25,7 +25,7 @@ BOX_URL = "http://#{COREOS_CHANNEL}.release.core-os.net/amd64-usr/current/coreos
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
-  onfig.vm.box = "#{BOX_NAME}"
+  config.vm.box = "#{BOX_NAME}"
   config.vm.box_url = "#{BOX_URL}"
   config.vm.hostname = "Magneto"
   config.vm.network :private_network, :ip => '10.9.8.7'
