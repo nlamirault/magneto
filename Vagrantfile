@@ -13,10 +13,20 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+# Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
+VAGRANTFILE_API_VERSION = "2"
 
-Vagrant.configure("2") do |config|
-  config.vm.box = "Trusty64"
-  config.vm.box_url = "http://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
+COREOS_CHANNEL = "alpha"
+COREOS_VERSION = "509.0.0"
+
+BOX_NAME = "magneto-#{COREOS_CHANNEL}"
+BOX_URL = "http://#{COREOS_CHANNEL}.release.core-os.net/amd64-usr/current/coreos_production_vagrant.json"
+
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+
+  onfig.vm.box = "#{BOX_NAME}"
+  config.vm.box_url = "#{BOX_URL}"
   config.vm.hostname = "Magneto"
   config.vm.network :private_network, :ip => '10.9.8.7'
 
@@ -31,6 +41,29 @@ Vagrant.configure("2") do |config|
     vb.name = "Magneto"
   end
 
-  config.vm.provision "shell", path: "vagrant/magneto.sh"
+  config.vm.provision :file,
+                      :source => "units/mesos-master.service",
+                      :destination => "/etc/systemd/system/mesos-master.service"
+  config.vm.provision :file,
+                      :source => "units/mesos-slave.service",
+                      :destination => "/etc/systemd/system/mesos-slave.service"
+  config.vm.provision :file,
+                      :source => "units/marathon.service",
+                      :destination => "/etc/systemd/system/marathon.service"
+  config.vm.provision :file,
+                      :source => "units/zookeeper.service",
+                      :destination => "/etc/systemd/system/zookeeper.service"
+  config.vm.provision :shell,
+                      :inline => "fleetctl start /etc/systemd/system/zookeeper.service",
+                      :privileged => true
+  config.vm.provision :shell,
+                      :inline => "fleetctl start /etc/systemd/system/mesos-master.service",
+                      :privileged => true
+  config.vm.provision :shell,
+                      :inline => "fleetctl start /etc/systemd/system/mesos-slave.service",
+                      :privileged => true
+  config.vm.provision :shell,
+                      :inline => "fleetctl start /etc/systemd/system/marathon.service",
+                      :privileged => true
 
 end
