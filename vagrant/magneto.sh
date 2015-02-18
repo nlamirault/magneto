@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Copyright (C) 2014, 2015 Nicolas Lamirault <nicolas.lamirault@gmail.com>
 
 # This program is free software: you can redistribute it and/or modify
@@ -13,24 +15,12 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv E56151BF
 
-Vagrant.configure("2") do |config|
-  config.vm.box = "Trusty64"
-  config.vm.box_url = "http://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
-  config.vm.hostname = "Magneto"
-  config.vm.network :private_network, :ip => '10.9.8.7'
+DISTRO=$(lsb_release -is | tr '[:upper:]' '[:lower:]')
+CODENAME=$(lsb_release -cs)
 
-  config.ssh.forward_agent = true
-  config.ssh.forward_x11 = true
-
-  config.vm.provider :virtualbox do |vb|
-    #vb.gui = true
-    vb.customize ["modifyvm", :id, "--memory", "2048", "--cpus", "2"]
-    vb.customize ["modifyvm", :id, "--natdnshostresolver1", "off"]
-    vb.customize ["modifyvm", :id, "--natdnsproxy1", "off"]
-    vb.name = "Magneto"
-  end
-
-  config.vm.provision "shell", path: "vagrant/magneto.sh"
-
-end
+echo "deb http://repos.mesosphere.io/${DISTRO} ${CODENAME} main" | \
+    sudo tee /etc/apt/sources.list.d/mesosphere.list
+sudo apt-get -y update
+sudo apt-get -y install mesos marathon
