@@ -19,7 +19,7 @@ VAGRANTFILE_API_VERSION = "2"
 COREOS_CHANNEL = "alpha"
 COREOS_VERSION = "509.0.0"
 
-BOX_NAME = "magneto-#{COREOS_CHANNEL}"
+BOX_NAME = "coreos-#{COREOS_CHANNEL}"
 BOX_URL = "http://#{COREOS_CHANNEL}.release.core-os.net/amd64-usr/current/coreos_production_vagrant.json"
 
 
@@ -27,8 +27,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.box = "#{BOX_NAME}"
   config.vm.box_url = "#{BOX_URL}"
-  config.vm.hostname = "Magneto"
   config.vm.network :private_network, :ip => '10.9.8.7'
+  config.vm.network "forwarded_port", guest: 5050, host: 5050
+  config.vm.network "forwarded_port", guest: 8080, host: 8080
 
   config.ssh.forward_agent = true
   config.ssh.forward_x11 = true
@@ -41,29 +42,20 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     vb.name = "Magneto"
   end
 
-  config.vm.provision :file,
-                      :source => "units/mesos-master.service",
-                      :destination => "/etc/systemd/system/mesos-master.service"
-  config.vm.provision :file,
-                      :source => "units/mesos-slave.service",
-                      :destination => "/etc/systemd/system/mesos-slave.service"
-  config.vm.provision :file,
-                      :source => "units/marathon.service",
-                      :destination => "/etc/systemd/system/marathon.service"
-  config.vm.provision :file,
-                      :source => "units/zookeeper.service",
-                      :destination => "/etc/systemd/system/zookeeper.service"
-  config.vm.provision :shell,
-                      :inline => "fleetctl start /etc/systemd/system/zookeeper.service",
-                      :privileged => true
-  config.vm.provision :shell,
-                      :inline => "fleetctl start /etc/systemd/system/mesos-master.service",
-                      :privileged => true
-  config.vm.provision :shell,
-                      :inline => "fleetctl start /etc/systemd/system/mesos-slave.service",
-                      :privileged => true
-  config.vm.provision :shell,
-                      :inline => "fleetctl start /etc/systemd/system/marathon.service",
-                      :privileged => true
+  config.vm.provision :file, :source => "coreos/user-data", :destination => "/tmp/vagrantfile-user-data"
+  config.vm.provision :shell, :inline => "mv /tmp/vagrantfile-user-data /var/lib/coreos-vagrant/", :privileged => true
+
+  config.vm.provision :file, :source => "coreos/units/mesos-master.service", :destination => "/tmp/mesos-master.service"
+  config.vm.provision :shell, :inline => "mv /tmp/mesos-master.service /etc/systemd/system/mesos-master.service", :privileged => true
+  config.vm.provision :file, :source => "coreos/units/mesos-slave.service", :destination => "/tmp/mesos-slave.service"
+  config.vm.provision :shell, :inline => "mv /tmp/mesos-slave.service /etc/systemd/system/mesos-slave.service", :privileged => true
+  config.vm.provision :file, :source => "coreos/units/marathon.service", :destination => "/tmp/marathon.service"
+  config.vm.provision :shell, :inline => "mv /tmp/marathon.service /etc/systemd/system/marathon.service", :privileged => true
+  config.vm.provision :file, :source => "coreos/units/zookeeper.service", :destination => "/tmp/zookeeper.service"
+  config.vm.provision :shell, :inline => "mv /tmp/zookeeper.service /etc/systemd/system/zookeeper.service", :privileged => true
+  config.vm.provision :shell, :inline => "fleetctl start /etc/systemd/system/zookeeper.service", :privileged => true
+  config.vm.provision :shell, :inline => "fleetctl start /etc/systemd/system/mesos-master.service", :privileged => true
+  config.vm.provision :shell, :inline => "fleetctl start /etc/systemd/system/mesos-slave.service", :privileged => true
+  config.vm.provision :shell, :inline => "fleetctl start /etc/systemd/system/marathon.service", :privileged => true
 
 end
