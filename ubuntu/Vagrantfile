@@ -1,0 +1,40 @@
+# Copyright (C) 2014, 2015 Nicolas Lamirault <nicolas.lamirault@gmail.com>
+
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+# Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+
+  config.vm.box = "ubuntu/trusty64"
+  config.vm.box_url = "ubuntu/trusty64"
+  config.vm.network :private_network, :ip => '10.8.6.4'
+  config.vm.network "forwarded_port", guest: 5050, host: 5050
+  config.vm.network "forwarded_port", guest: 8080, host: 8080
+
+  config.ssh.forward_agent = true
+  config.ssh.forward_x11 = true
+
+  config.vm.provider :virtualbox do |vb|
+    #vb.gui = true
+    vb.customize ["modifyvm", :id, "--memory", "2048", "--cpus", "2"]
+    vb.customize ["modifyvm", :id, "--natdnshostresolver1", "off"]
+    vb.customize ["modifyvm", :id, "--natdnsproxy1", "off"]
+    vb.name = "MagnetoUbuntu"
+  end
+
+  config.vm.provision :shell, :path => "vagrant.sh", :privileged => true
+
+end
