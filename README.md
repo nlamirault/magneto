@@ -18,6 +18,10 @@ It has been tested using :
 
 ## Installation
 
+### CoreOS
+
+Into the **coreos** directory :
+
 * Creates the VM :
 
         $ vagrant up
@@ -31,6 +35,19 @@ It has been tested using :
         mesos-master.service    35127efe.../10.9.8.7    activating      start-pre
         mesos-slave.service     35127efe.../10.9.8.7    activating      start-pre
         zookeeper.service       35127efe.../10.9.8.7    active          running
+
+* Check Mesos UI on `10.9.8.7:5050` and Marathon UI on `10.9.8.7:8080`
+
+
+### Ubuntu Trusty 64
+
+Into the **ubuntu** directory :
+
+* Creates the VM:
+
+        $ vagrant up
+
+* Check Mesos UI on `10.8.6.4:5050` and Marathon UI on `10.8.6.4:8080`
 
 
 ## License
