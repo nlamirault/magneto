@@ -6,32 +6,48 @@ Magneto
 ## Description
 
 Setup your Continuous integration sytem on a [Mesos][] Cluster with Vagrant. [Magneto][] uses :
-* [Jenkins][]  with the Mesos scheduler plugin installed
-* [Mesos][] (0.18.2)
-* [Mesos Docker Executor][] installed on all Mesos slave servers
-* [Docker][] installed on all slave servers
-* [Marathon][] (0.4.0) framework.
-* [Chronos][] (2.1.0) framework
-* [Aurora][] framework
-
+* [Docker][]
+* [Mesos][] (0.20.1) `http://10.9.8.7:5050`
+* [Marathon][] (0.7.5) framework. `http://10.9.8.7:8080`
 
 ## Prerequisites
 
 It has been tested using :
-* [Vagrant][] 1.4.3
-* [Ansible][] 1.6.0
 * [Virtualbox][] 4.2.2
-
+* [Vagrant][] 1.4.3
 
 ## Installation
+
+### CoreOS
+
+Into the **coreos** directory :
 
 * Creates the VM :
 
         $ vagrant up
 
-* Mesos : `http://10.9.8.7:5050`
-* Chronos : `http://10.9.8.7:8081`
-* Marathon : `http://10.9.8.7:8080`
+* Check services and wait until all services are running:
+
+        $ vagrant ssh
+        > fleetctl list-units
+        UNIT                    MACHINE                 ACTIVE          SUB
+        marathon.service        35127efe.../10.9.8.7    activating      start-pre
+        mesos-master.service    35127efe.../10.9.8.7    activating      start-pre
+        mesos-slave.service     35127efe.../10.9.8.7    activating      start-pre
+        zookeeper.service       35127efe.../10.9.8.7    active          running
+
+* Check Mesos UI on `10.9.8.7:5050` and Marathon UI on `10.9.8.7:8080`
+
+
+### Ubuntu Trusty 64
+
+Into the **ubuntu** directory :
+
+* Creates the VM:
+
+        $ vagrant up
+
+* Check Mesos UI on `10.8.6.4:5050` and Marathon UI on `10.8.6.4:8080`
 
 
 ## License
@@ -73,5 +89,4 @@ Nicolas Lamirault <nicolas.lamirault@gmail.com>
 [Chronos]: http://airbnb.github.io/chronos
 [Aurora]: http://aurora.incubator.apache.org
 [Vagrant]: http://www.vagrantup.com
-[Ansible]: http://www.ansible.com
 [Virtualbox]: https://www.virtualbox.org
